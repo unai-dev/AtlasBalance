@@ -8,4 +8,7 @@ public class Expense: BaseModel
     //related properties
     public User? User { get; set; }
     public int UserID { get; set; }
+
+    public Currency? Currency { get; set; }
+    public int CurrencyID { get; set; }
 }

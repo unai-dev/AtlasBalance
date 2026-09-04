@@ -16,11 +16,13 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public AtlasDbContext(DbContextOptions<AtlasDbContext> options) : base(options) { }
 
     public DbSet<Expense> Expenses => Set<Expense>();
+    public DbSet<Currency> Currencies => Set<Currency>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
         builder.ApplyConfiguration(new ExpenseConfiguration());
+        builder.ApplyConfiguration(new CurrencyConfiguration());
     }
 }

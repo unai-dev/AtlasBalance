@@ -4,6 +4,7 @@ using AtlasBalance.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBalance.Infrastructure.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260904084604_create_currencies_table")]
+    partial class create_currencies_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +73,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("CurrencyID")
+                    b.Property<int?>("CurrencyID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -300,19 +303,15 @@ namespace AtlasBalance.Infrastructure.Migrations
 
             modelBuilder.Entity("AtlasBalance.Domain.Models.Expense", b =>
                 {
-                    b.HasOne("AtlasBalance.Domain.Models.Currency", "Currency")
+                    b.HasOne("AtlasBalance.Domain.Models.Currency", null)
                         .WithMany("Expenses")
-                        .HasForeignKey("CurrencyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CurrencyID");
 
                     b.HasOne("AtlasBalance.Domain.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Currency");
 
                     b.Navigation("User");
                 });
