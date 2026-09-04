@@ -1,15 +1,15 @@
 <Solution>
   <Folder Name="/src/" />
   <Folder Name="/src/API/">
-    <Project Path="C:/Users/unaid/source/repos/AtlasBalance/AtlasBalance.API/AtlasBalance.API.csproj" />
+    <Project Path="AtlasBalance.API/AtlasBalance.API.csproj" />
   </Folder>
   <Folder Name="/src/Application/">
-    <Project Path="C:/Users/unaid/source/repos/AtlasBalance/AtlasBalance.Application/AtlasBalance.Application.csproj" />
+    <Project Path="AtlasBalance.Application/AtlasBalance.Application.csproj" />
   </Folder>
   <Folder Name="/src/Domain/">  
-    <Project Path="C:/Users/unaid/source/repos/AtlasBalance/AtlasBalance.Domain/AtlasBalance.Domain.csproj" />
+    <Project Path="AtlasBalance.Domain/AtlasBalance.Domain.csproj" />
   </Folder>
   <Folder Name="/src/Infrastructure/">
-    <Project Path="C:/Users/unaid/source/repos/AtlasBalance/AtlasBalance.Infrastructure/AtlasBalance.Infrastructure.csproj" />
+    <Project Path="AtlasBalance.Infrastructure/AtlasBalance.Infrastructure.csproj" />
   </Folder>
 </Solution>
