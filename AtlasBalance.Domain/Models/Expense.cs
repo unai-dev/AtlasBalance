@@ -11,4 +11,7 @@ public class Expense: BaseModel
 
     public Currency? Currency { get; set; }
     public int CurrencyID { get; set; }
+
+    public Category? Category { get; set; }
+    public int CategoryID { get; set; }
 }

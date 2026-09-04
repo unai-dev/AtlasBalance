@@ -4,6 +4,7 @@ using AtlasBalance.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBalance.Infrastructure.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260904085205_create_categories_table")]
+    partial class create_categories_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,9 +94,6 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double");
 
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -112,8 +112,6 @@ namespace AtlasBalance.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CategoryID");
 
                     b.HasIndex("CurrencyID");
 
@@ -329,12 +327,6 @@ namespace AtlasBalance.Infrastructure.Migrations
 
             modelBuilder.Entity("AtlasBalance.Domain.Models.Expense", b =>
                 {
-                    b.HasOne("AtlasBalance.Domain.Models.Category", "Category")
-                        .WithMany("Expenses")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AtlasBalance.Domain.Models.Currency", "Currency")
                         .WithMany("Expenses")
                         .HasForeignKey("CurrencyID")
@@ -346,8 +338,6 @@ namespace AtlasBalance.Infrastructure.Migrations
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
 
                     b.Navigation("Currency");
 
@@ -403,11 +393,6 @@ namespace AtlasBalance.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("AtlasBalance.Domain.Models.Category", b =>
-                {
-                    b.Navigation("Expenses");
                 });
 
             modelBuilder.Entity("AtlasBalance.Domain.Models.Currency", b =>
