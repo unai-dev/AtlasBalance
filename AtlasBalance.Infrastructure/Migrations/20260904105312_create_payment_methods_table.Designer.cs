@@ -4,6 +4,7 @@ using AtlasBalance.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBalance.Infrastructure.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260904105312_create_payment_methods_table")]
+    partial class create_payment_methods_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,9 +108,6 @@ namespace AtlasBalance.Infrastructure.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("varchar(2000)");
 
-                    b.Property<int>("PaymentMethodID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -119,8 +119,6 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.HasIndex("CategoryID");
 
                     b.HasIndex("CurrencyID");
-
-                    b.HasIndex("PaymentMethodID");
 
                     b.HasIndex("UserID");
 
@@ -380,12 +378,6 @@ namespace AtlasBalance.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AtlasBalance.Domain.Models.PaymentMethod", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("PaymentMethodID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AtlasBalance.Domain.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
@@ -395,8 +387,6 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Currency");
-
-                    b.Navigation("PaymentMethod");
 
                     b.Navigation("User");
                 });

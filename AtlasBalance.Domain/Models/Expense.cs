@@ -14,4 +14,7 @@ public class Expense: BaseModel
 
     public Category? Category { get; set; }
     public int CategoryID { get; set; }
+
+    public PaymentMethod? PaymentMethod { get; set; }
+    public int PaymentMethodID { get; set; }
 }
