@@ -1,4 +1,6 @@
-﻿namespace AtlasBalance.Domain.Models;
+﻿using AtlasBalance.Domain.Models.Common;
+
+namespace AtlasBalance.Domain.Models;
 
 public class Expense: BaseModel
 {

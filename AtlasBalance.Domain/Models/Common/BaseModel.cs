@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AtlasBalance.Domain.Models;
+namespace AtlasBalance.Domain.Models.Common;
 
 public abstract class BaseModel
 {

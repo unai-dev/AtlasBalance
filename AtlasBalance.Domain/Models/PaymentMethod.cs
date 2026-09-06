@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using AtlasBalance.Domain.Models.Common;
+
 namespace AtlasBalance.Domain.Models;
 
 public class PaymentMethod : BaseModel
