@@ -4,6 +4,7 @@ using AtlasBalance.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBalance.Infrastructure.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260906171537_create_accounts_table")]
+    partial class create_accounts_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,7 +133,7 @@ namespace AtlasBalance.Infrastructure.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("AccountID")
+                    b.Property<int?>("AccountID")
                         .HasColumnType("int");
 
                     b.Property<double>("Amount")
@@ -416,7 +419,7 @@ namespace AtlasBalance.Infrastructure.Migrations
             modelBuilder.Entity("AtlasBalance.Domain.Models.Account", b =>
                 {
                     b.HasOne("AtlasBalance.Domain.Models.User", "User")
-                        .WithMany("Accounts")
+                        .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -426,11 +429,9 @@ namespace AtlasBalance.Infrastructure.Migrations
 
             modelBuilder.Entity("AtlasBalance.Domain.Models.Expense", b =>
                 {
-                    b.HasOne("AtlasBalance.Domain.Models.Account", "Account")
+                    b.HasOne("AtlasBalance.Domain.Models.Account", null)
                         .WithMany("Expenses")
-                        .HasForeignKey("AccountID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountID");
 
                     b.HasOne("AtlasBalance.Domain.Models.Category", "Category")
                         .WithMany("Expenses")
@@ -451,12 +452,10 @@ namespace AtlasBalance.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("AtlasBalance.Domain.Models.User", "User")
-                        .WithMany("Expenses")
+                        .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Account");
 
                     b.Navigation("Category");
 
@@ -543,13 +542,6 @@ namespace AtlasBalance.Infrastructure.Migrations
             modelBuilder.Entity("AtlasBalance.Domain.Models.PaymentMethod", b =>
                 {
                     b.Navigation("PaymentMethods");
-                });
-
-            modelBuilder.Entity("AtlasBalance.Domain.Models.User", b =>
-                {
-                    b.Navigation("Accounts");
-
-                    b.Navigation("Expenses");
                 });
 #pragma warning restore 612, 618
         }

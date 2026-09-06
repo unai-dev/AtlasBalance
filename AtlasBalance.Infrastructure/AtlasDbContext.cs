@@ -19,6 +19,7 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<Currency> Currencies => Set<Currency>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<PaymentMethod> PaymentMethods => Set<PaymentMethod>();
+    public DbSet<Account> Accounts => Set<Account>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -28,5 +29,6 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
         builder.ApplyConfiguration(new CurrencyConfiguration());
         builder.ApplyConfiguration(new CategoryConfiguration());
         builder.ApplyConfiguration(new PaymentMethodConfiguration());
+        builder.ApplyConfiguration(new AccountConfiguration());
     }
 }
