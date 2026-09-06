@@ -19,4 +19,7 @@ public class Expense: BaseModel
 
     public PaymentMethod? PaymentMethod { get; set; }
     public int PaymentMethodID { get; set; }
+
+    public Account? Account { get; set; }
+    public int AccountID { get; set; }
 }
