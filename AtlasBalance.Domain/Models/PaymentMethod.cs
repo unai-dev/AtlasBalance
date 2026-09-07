@@ -12,5 +12,5 @@ public class PaymentMethod : BaseModel
     public string ProviderName { get; set; } = null!;
 
     //related properties
-    public List<PaymentMethod> PaymentMethods { get; set; } = new List<PaymentMethod>();
+    public List<Expense> Expenses { get; set; } = new List<Expense>();
 }
