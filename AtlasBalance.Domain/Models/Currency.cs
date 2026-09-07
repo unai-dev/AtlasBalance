@@ -8,6 +8,7 @@ namespace AtlasBalance.Domain.Models;
 
 public class Currency : BaseModel
 {
+    //properties
     public string CodeISO { get; set; } = null!;
     public string Name { get; set; } = null!;
     public string Symbol { get; set; } = null!;

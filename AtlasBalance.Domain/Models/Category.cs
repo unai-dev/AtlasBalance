@@ -8,6 +8,7 @@ namespace AtlasBalance.Domain.Models;
 
 public class Category: BaseModel
 {
+    //properties
     public string Name { get; set; } = null!;
 
     //related properties

@@ -8,6 +8,7 @@ namespace AtlasBalance.Domain.Models;
 
 public class Account: BaseModel
 {
+    //properties
     public string AccountName { get; set; } = null!;
     public string IBAN { get; set; } = null!;
     public double Amount { get; set; }

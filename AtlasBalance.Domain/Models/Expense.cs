@@ -4,6 +4,7 @@ namespace AtlasBalance.Domain.Models;
 
 public class Expense: BaseModel
 {
+    //properties
     public double Amount { get; set; }
     public string Description { get; set; } = null!;
 

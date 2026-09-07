@@ -4,6 +4,7 @@ namespace AtlasBalance.Domain.Models;
 
 public class User: IdentityUser<int>
 {
+    //properties
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
 

@@ -8,6 +8,7 @@ namespace AtlasBalance.Domain.Models;
 
 public class PaymentMethod : BaseModel
 {
+    //properties
     public string MethodType { get; set; } = null!;
     public string ProviderName { get; set; } = null!;
 
