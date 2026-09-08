@@ -37,6 +37,8 @@ builder.Services.AddDbContext<AtlasDbContext>(options =>
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile<CategoryProfile>();
+    cfg.AddProfile<CurrencyProfile>();
+    cfg.AddProfile<PaymentMethodProfile>();
 });
 
 
