@@ -1,3 +1,4 @@
+using AtlasBalance.API.Middlewares;
 using AtlasBalance.Application.MappingProfiles;
 using AtlasBalance.Infrastructure;
 
@@ -58,10 +59,13 @@ builder.Services.AddAutoMapper(cfg =>
  */
 var app = builder.Build();
 
+/**
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ |                                          MIDDLEWARES
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ */
 app.UseHttpsRedirection();
-
+app.UseMiddleware<CatchExceptionMiddleware>();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
