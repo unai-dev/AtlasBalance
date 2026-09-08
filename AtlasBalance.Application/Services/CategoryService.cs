@@ -26,12 +26,16 @@ public class CategoryService : ICategoryService
     }
 
     public async Task<IEnumerable<CategoryReadDto>> GetAll()
-        => _mapper.Map<IEnumerable<CategoryReadDto>>(await _context.Categories.AsNoTracking().ToListAsync());
+        => _mapper.Map<IEnumerable<CategoryReadDto>>(
+            await _context.Categories
+            .AsNoTracking()
+            .ToListAsync());
 
     public async Task<CategoryReadWithRelationsDto> GetOneWithRelations(int ID)
     {
         var category = await _context.Categories
             .Include(x => x.Expenses)
+            .AsNoTracking()
             .FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"Category with ID {ID} not found.");
 
@@ -41,6 +45,7 @@ public class CategoryService : ICategoryService
     public async Task<CategoryReadDto> GetOne(int ID)
     {
         var category = await _context.Categories
+            .AsNoTracking()
             .FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"Category with ID {ID} not found.");
 
