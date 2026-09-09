@@ -1,5 +1,7 @@
 using AtlasBalance.API.Middlewares;
+using AtlasBalance.Application.Interfaces;
 using AtlasBalance.Application.MappingProfiles;
+using AtlasBalance.Application.Services;
 using AtlasBalance.Infrastructure;
 
 using Microsoft.EntityFrameworkCore;
@@ -43,6 +45,16 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<ExpenseProfile>();
 });
 
+/**
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ |                                          DI
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ */
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<ICurrencyService, CurrencyService>();
+builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
+builder.Services.AddScoped<IExpenseService, ExpenseService>();
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
