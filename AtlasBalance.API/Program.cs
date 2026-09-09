@@ -40,6 +40,7 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<CurrencyProfile>();
     cfg.AddProfile<PaymentMethodProfile>();
     cfg.AddProfile<AccountProfile>();
+    cfg.AddProfile<ExpenseProfile>();
 });
 
 
