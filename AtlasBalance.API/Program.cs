@@ -93,6 +93,15 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ |                                          CORS
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ */
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(cfg => cfg.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+});
+/**
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
