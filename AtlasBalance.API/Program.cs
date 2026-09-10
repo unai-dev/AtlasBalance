@@ -59,6 +59,7 @@ builder.Services.AddAutoMapper(cfg =>
 //auth services
 builder.Services.AddScoped<UserManager<User>>();
 builder.Services.AddScoped<SignInManager<User>>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 //app services
 builder.Services.AddScoped<ICategoryService, CategoryService>();
