@@ -1,10 +1,16 @@
+using System.Text;
+
 using AtlasBalance.API.Middlewares;
 using AtlasBalance.Application.Interfaces;
 using AtlasBalance.Application.MappingProfiles;
 using AtlasBalance.Application.Services;
+using AtlasBalance.Domain.Models;
 using AtlasBalance.Infrastructure;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens.Experimental;
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -50,11 +56,40 @@ builder.Services.AddAutoMapper(cfg =>
  |                                          DI
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  */
+//auth services
+builder.Services.AddScoped<UserManager<User>>();
+builder.Services.AddScoped<SignInManager<User>>();
+
+//app services
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
 builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
+
+/**
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ |                                          AUTH CONFIG
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ */
+builder.Services.AddIdentityCore<User>()
+    .AddEntityFrameworkStores<AtlasDbContext>()
+    .AddDefaultTokenProviders()
+    .AddSignInManager();
+
+builder.Services.AddAuthentication().AddJwtBearer(options =>
+{
+    options.MapInboundClaims = false;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT_SECRET"]!)),
+        ClockSkew = TimeSpan.Zero
+    };
+});
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
