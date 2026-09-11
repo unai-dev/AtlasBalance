@@ -6,6 +6,6 @@ namespace AtlasBalance.Application.Interfaces;
 
 public interface IAuthService
 {
-    Task<UserReadDto> Register(RegisterUserDto dto);
+    Task<UserReadDto> Register(UserCreateDto dto);
     Task<JWTBearerResponse> Login(LoginUserDto dto);
 }

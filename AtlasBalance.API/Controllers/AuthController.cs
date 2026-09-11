@@ -1,6 +1,8 @@
 using AtlasBalance.Application.DTOs.Auth;
+using AtlasBalance.Application.DTOs.User;
 using AtlasBalance.Application.Interfaces;
 using AtlasBalance.Application.Responses;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace AtlasBalance.API.Controllers;
@@ -14,7 +16,7 @@ public class AuthController : ControllerBase
     public AuthController(IAuthService service) => _service = service;
 
     [HttpPost("register")]
-    public async Task<ActionResult> Register([FromBody] RegisterUserDto dto)
+    public async Task<ActionResult> Register([FromBody] UserCreateDto dto)
     {
         var created = await _service.Register(dto);
         return CreatedAtAction(null, created);

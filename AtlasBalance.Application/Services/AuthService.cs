@@ -29,7 +29,7 @@ public class AuthService: IAuthService
         _configuration = configuration;
         _mapper = mapper;
     }
-    public async Task<UserReadDto> Register(RegisterUserDto dto)
+    public async Task<UserReadDto> Register(UserCreateDto dto)
     {
         var newUser = new User
         {
