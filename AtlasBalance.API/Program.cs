@@ -49,6 +49,7 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<PaymentMethodProfile>();
     cfg.AddProfile<AccountProfile>();
     cfg.AddProfile<ExpenseProfile>();
+    cfg.AddProfile<UserProfile>();
 });
 
 /**
@@ -67,6 +68,7 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
 builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
