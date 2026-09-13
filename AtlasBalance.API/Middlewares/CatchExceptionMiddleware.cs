@@ -29,8 +29,9 @@ public class CatchExceptionMiddleware
     {
         int statusCode = ex switch
         {
-            NotFoundException => 404,
             BadRequestException => 400,
+            ForbiddenException => 403,
+            NotFoundException => 404,
             _ => 500
         };
 
