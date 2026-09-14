@@ -19,6 +19,7 @@
     "Scalar": {
       "commandName": "Project",
       "launchUrl": "https://localhost:7212/scalar",
+      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

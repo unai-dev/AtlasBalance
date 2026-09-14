@@ -10,7 +10,6 @@ using AtlasBalance.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.IdentityModel.Tokens.Experimental;
 
 using Scalar.AspNetCore;
 
