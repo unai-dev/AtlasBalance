@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Tokens.Experimental;
 
+using Scalar.AspNetCore;
+
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  |                                          SERVICES
@@ -19,6 +21,12 @@ using Microsoft.IdentityModel.Tokens.Experimental;
  */
 var builder = WebApplication.CreateBuilder(args);
 
+/**
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ |                                          OPENAPI
+ | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ */
+builder.Services.AddOpenApi();
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  |                                          CONTROLLERS
@@ -121,6 +129,11 @@ builder.Services.AddCors(options =>
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  */
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+}
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
