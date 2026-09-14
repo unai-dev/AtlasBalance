@@ -1,9 +1,9 @@
-using System;
 using AtlasBalance.Application.DTOs.User;
 using AtlasBalance.Application.DTOs.Currency;
 using AtlasBalance.Application.DTOs.Category;
 using AtlasBalance.Application.DTOs.PaymentMethod;
 using AtlasBalance.Application.DTOs.Account;
+using AtlasBalance.Application.DTOs.ExpensesGroup;
 
 namespace AtlasBalance.Application.DTOs.Expense;
 
@@ -18,4 +18,6 @@ public class ExpenseReadWithRelationsDto : ExpenseReadDto
     public PaymentMethodReadDto? PaymentMethod { get; set; }
 
     public AccountReadDto? Account { get; set; }
+
+    public ExpensesGroupReadDto? ExpensesGroup { get; set; }
 }

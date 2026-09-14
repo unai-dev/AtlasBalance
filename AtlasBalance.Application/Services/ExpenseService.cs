@@ -57,6 +57,9 @@ public class ExpenseService : IExpenseService
         var userExists = await _context.Users.AnyAsync(u => u.Id == dto.UserID);
         if (!userExists) throw new NotFoundException($"User with ID {dto.UserID} not found.");
 
+        var groupExists = await _context.ExpensesGroups.AnyAsync(e => e.ID == dto.ExpensesGroupID);
+        if (!groupExists) throw new NotFoundException($"Expenses group with ID {dto.ExpensesGroupID} not found");
+
         var currencyExists = await _context.Currencies.AnyAsync(c => c.ID == dto.CurrencyID);
         if (!currencyExists) throw new NotFoundException($"Currency with ID {dto.CurrencyID} not found.");
 

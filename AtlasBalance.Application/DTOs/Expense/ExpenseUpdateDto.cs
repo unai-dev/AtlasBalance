@@ -21,5 +21,7 @@ public class ExpenseUpdateDto
 
     public int AccountID { get; set; }
 
+    public int ExpensesGroupID { get; set; }
+
     public DateTime? UpdatedAt { get; set; }
 }

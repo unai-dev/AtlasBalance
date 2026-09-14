@@ -18,4 +18,6 @@ public class ExpenseReadDto : ReadDtoBase
     public int PaymentMethodID { get; set; }
 
     public int AccountID { get; set; }
+
+    public int ExpensesGroupID { get; set; }
 }

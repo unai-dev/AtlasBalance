@@ -19,4 +19,6 @@ public class ExpenseCreateDto
     public int PaymentMethodID { get; set; }
 
     public int AccountID { get; set; }
+
+    public int ExpensesGroupID { get; set;  }
 }
