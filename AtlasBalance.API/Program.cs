@@ -56,6 +56,7 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<PaymentMethodProfile>();
     cfg.AddProfile<AccountProfile>();
     cfg.AddProfile<ExpenseProfile>();
+    cfg.AddProfile<ExpensesGroupProfile>();
     cfg.AddProfile<UserProfile>();
 });
 
