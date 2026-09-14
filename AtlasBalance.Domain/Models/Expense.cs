@@ -23,4 +23,7 @@ public class Expense: BaseModel
 
     public Account? Account { get; set; }
     public int AccountID { get; set; }
+
+    public ExpensesGroup? ExpensesGroup { get; set; }
+    public int ExpensesGroupID { get; set; }
 }

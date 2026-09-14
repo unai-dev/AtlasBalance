@@ -13,4 +13,5 @@ public class Category: BaseModel
 
     //related properties
     public List<Expense> Expenses { get; set; } = new List<Expense>();
+    public List<ExpensesGroup> ExpensesGroups { get; set; } = new List<ExpensesGroup>();
 }
