@@ -20,5 +20,15 @@ public class ExpensesGroupConfiguration: IEntityTypeConfiguration<ExpensesGroup>
         builder.Property(x => x.Description)
             .HasMaxLength(2000)
             .IsRequired();
+
+        builder.HasOne(x => x.Owner)
+            .WithMany(u => u.OwnedGroups)
+            .HasForeignKey(x => x.OwnerID)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.Guest)
+            .WithMany(u => u.GuestGroups)
+            .HasForeignKey(x => x.GuestID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

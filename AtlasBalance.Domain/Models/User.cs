@@ -11,5 +11,6 @@ public class User: IdentityUser<int>
     //related properties
     public List<Account> Accounts { get; set; } = new List<Account>();
     public List<Expense> Expenses { get; set; } = new List<Expense>();
-    public List<ExpensesGroup> ExpensesGroups { get; set; } = new List<ExpensesGroup>();
+    public List<ExpensesGroup> OwnedGroups { get; set; } = new List<ExpensesGroup>();
+    public List<ExpensesGroup> GuestGroups { get; set; } = new List<ExpensesGroup>();
 }
