@@ -6,6 +6,7 @@ public interface IUserService
 {
     Task<IEnumerable<UserReadDto>> GetAll();
     Task<UserReadDto> GetOne(int ID);
+    Task<UserReadDto> GetCurrentUser();
     Task<UserReadWithRelationsDto> GetOneWithRelations(int ID);
     Task<UserReadDto> Create(UserCreateDto dto);
     Task Delete(int ID);

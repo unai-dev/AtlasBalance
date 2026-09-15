@@ -6,6 +6,7 @@ using AtlasBalance.Infrastructure;
 
 using AutoMapper;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,11 +16,13 @@ public class UserService : IUserService
 {
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
+    private readonly IHttpContextAccessor _http;
 
-    public UserService(IMapper mapper, UserManager<User> userManager)
+    public UserService(IMapper mapper, UserManager<User> userManager, IHttpContextAccessor http)
     {
         _mapper = mapper;
         _userManager = userManager;
+        _http = http;
     }
 
     public async Task<IEnumerable<UserReadDto>> GetAll()
@@ -45,6 +48,18 @@ public class UserService : IUserService
             ?? throw new NotFoundException($"User with ID {ID} not found.");
 
         return _mapper.Map<UserReadDto>(user);
+    }
+
+    public async Task<UserReadDto> GetCurrentUser()
+    {
+        if (_http.HttpContext is not null)
+        {
+            var claim = _http.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "email")
+                ?? throw new BadRequestException($"Claim with type email not found");
+            return _mapper.Map<UserReadDto>(await _userManager.FindByEmailAsync(claim.Value));
+        }
+
+        throw new BadRequestException($"Error to get current user.");
     }
 
     public async Task<UserReadDto> Create(UserCreateDto dto)

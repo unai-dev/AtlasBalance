@@ -39,6 +39,11 @@ public class UsersController : ControllerBase
     public async Task<ActionResult<UserReadWithRelationsDto>> GetOneWithRelations(int id) => Ok(await _service.GetOneWithRelations(id));
 
     /// <summary>
+    /// Obtiene el usuario actual
+    /// </summary>
+    public async Task<ActionResult<UserReadDto>> GetCurrentUser() => Ok(await _service.GetCurrentUser());
+
+    /// <summary>
     /// Crea un nuevo usuario. El UserName se genera automáticamente a partir del email si no se suministra.
     /// - Devuelve 201 con el recurso creado.
     /// </summary>
