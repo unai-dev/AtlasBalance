@@ -16,12 +16,14 @@ public class ExpensesGroupService : IExpensesGroupService
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
+    private readonly IUserService _userService;
 
-    public ExpensesGroupService(AtlasDbContext context, IMapper mapper, UserManager<User> userManager)
+    public ExpensesGroupService(AtlasDbContext context, IMapper mapper, UserManager<User> userManager, IUserService userService)
     {
         _context = context;
         _mapper = mapper;
         _userManager = userManager;
+        _userService = userService;
     }
 
 
@@ -59,13 +61,12 @@ public class ExpensesGroupService : IExpensesGroupService
 
         var guestExists = await _userManager.Users.AnyAsync(x => x.Id ==  dto.GuestID);
         if (!guestExists) throw new NotFoundException($"Guest with ID {dto.GuestID} not found.");
-        
-        //rellenar automaticamente
-        var ownerExists = await _userManager.Users.AnyAsync(x => x.Id ==  dto.OwnerID);
-        if (!ownerExists) throw new NotFoundException($"Owner with ID {dto.OwnerID} not found.");
+
+        var owner = await _userService.GetCurrentUser();
 
         var group = _mapper.Map<ExpensesGroup>(dto);
 
+        group.OwnerID = owner.ID;
         _context.ExpensesGroups.Add(group);
         await _context.SaveChangesAsync();
 
