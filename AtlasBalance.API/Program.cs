@@ -77,6 +77,7 @@ builder.Services.AddScoped<ICurrencyService, CurrencyService>();
 builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IExpensesGroupService, ExpensesGroupService>();
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
