@@ -41,6 +41,7 @@ public class UsersController : ControllerBase
     /// <summary>
     /// Obtiene el usuario actual
     /// </summary>
+    [HttpGet("current")]
     public async Task<ActionResult<UserReadDto>> GetCurrentUser() => Ok(await _service.GetCurrentUser());
 
     /// <summary>
