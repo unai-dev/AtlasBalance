@@ -5,21 +5,18 @@ namespace AtlasBalance.Application.DTOs.Account;
 
 public class AccountUpdateDto
 {
-    [Required]
     [StringLength(255)]
-    public string AccountName { get; set; } = null!;
+    public string? AccountName { get; set; }
 
-    [Required]
     [StringLength(34)]
-    public string IBAN { get; set; } = null!;
+    public string? IBAN { get; set; }
 
-    public double Amount { get; set; }
+    public double? Amount { get; set; }
 
-    [Required]
     [StringLength(255)]
-    public string Provider { get; set; } = null!;
+    public string? Provider { get; set; }
 
-    public int UserID { get; set; }
+    public int? UserID { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
 }

@@ -5,17 +5,14 @@ namespace AtlasBalance.Application.DTOs.Currency;
 
 public class CurrencyUpdateDto
 {
-    [Required]
     [StringLength(3)]
-    public string CodeISO { get; set; } = null!;
+    public string? CodeISO { get; set; }
 
-    [Required]
     [StringLength(55)]
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
-    [Required]
     [StringLength(1)]
-    public string Symbol { get; set; } = null!;
+    public string? Symbol { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
 }

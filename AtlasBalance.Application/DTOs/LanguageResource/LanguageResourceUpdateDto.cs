@@ -4,11 +4,9 @@ namespace AtlasBalance.Application.DTOs.LanguageResource;
 
 public class LanguageResourceUpdateDto
 {
-    [Required]
-    public string Text { get; set; } = null!;
+    public string? Text { get; set; }
 
-    [Required]
-    public string Description { get; set; } = null!;
+    public string? Description { get; set; }
 
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
 }

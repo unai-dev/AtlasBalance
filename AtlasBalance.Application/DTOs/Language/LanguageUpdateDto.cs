@@ -4,9 +4,8 @@ namespace AtlasBalance.Application.DTOs.Language;
 
 public class LanguageUpdateDto
 {
-    [Required]
     [StringLength(55)]
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
 }

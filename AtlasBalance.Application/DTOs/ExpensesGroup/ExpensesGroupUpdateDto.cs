@@ -5,22 +5,17 @@ namespace AtlasBalance.Application.DTOs.ExpensesGroup;
 
 public class ExpensesGroupUpdateDto
 {
-    [Required]
     [StringLength(55)]
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
-    [Required]
     [StringLength(2000)]
-    public string Description { get; set; } = null!;
+    public string? Description { get; set; }
 
-    [Required]
-    public int OwnerID { get; set; }
+    public int? OwnerID { get; set; }
 
-    [Required]
-    public int GuestID { get; set; }
+    public int? GuestID { get; set; }
 
-    [Required]
-    public int CategoryID { get; set; }
+    public int? CategoryID { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
 }

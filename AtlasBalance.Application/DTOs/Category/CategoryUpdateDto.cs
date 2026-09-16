@@ -5,9 +5,8 @@ namespace AtlasBalance.Application.DTOs.Category;
 
 public class CategoryUpdateDto
 {
-    [Required]
     [StringLength(55)]
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
 }
