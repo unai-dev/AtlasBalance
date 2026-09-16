@@ -15,4 +15,6 @@ public class UserCreateDto
 
     [Required]
     public string Password { get; set; } = null!;
+
+    public int LanguageID { get; set; }
 }

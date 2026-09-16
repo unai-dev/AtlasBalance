@@ -17,12 +17,14 @@ public class UserService : IUserService
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
     private readonly IHttpContextAccessor _http;
+    private readonly AtlasDbContext _context;
 
-    public UserService(IMapper mapper, UserManager<User> userManager, IHttpContextAccessor http)
+    public UserService(IMapper mapper, UserManager<User> userManager, IHttpContextAccessor http, AtlasDbContext context)
     {
         _mapper = mapper;
         _userManager = userManager;
         _http = http;
+        _context = context;
     }
 
     public async Task<IEnumerable<UserReadDto>> GetAll()
@@ -94,5 +96,19 @@ public class UserService : IUserService
 
         if (!result.Succeeded)
             throw new BadRequestException("Failed to delete user");
+    }
+
+    public async Task UpdateLanguage(int ID, int languageID)
+    {
+        var user = await _userManager.FindByIdAsync(ID.ToString())
+            ?? throw new NotFoundException($"User with ID {ID} not found");
+
+        var languageExists = await _context.Languages.AnyAsync(x => x.ID == languageID);
+        if (!languageExists) throw new NotFoundException($"Language with ID {ID} not found");
+
+        user.LanguageID = languageID;
+
+        var result = await _userManager.UpdateAsync(user);
+        if (!result.Succeeded) throw new BadRequestException($"Error updating language");
     }
 }

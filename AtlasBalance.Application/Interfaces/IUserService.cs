@@ -10,4 +10,5 @@ public interface IUserService
     Task<UserReadWithRelationsDto> GetOneWithRelations(int ID);
     Task<UserReadDto> Create(UserCreateDto dto);
     Task Delete(int ID);
+    Task UpdateLanguage(int ID, int languageID);
 }

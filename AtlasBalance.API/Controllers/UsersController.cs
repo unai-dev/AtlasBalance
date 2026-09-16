@@ -63,4 +63,15 @@ public class UsersController : ControllerBase
         await _service.Delete(id);
         return NoContent();
     }
+
+    /// <summary>
+    /// Actualiza el idioma del usuario
+    /// </summary>
+    /// <param name="ID">ID del usuario</param>
+    /// <param name="languageID">ID del lenguaje</param>
+    public async Task<IActionResult> UpdateLanguage(int ID, int languageID)
+    {
+        await _service.UpdateLanguage(ID, languageID);
+        return Ok();
+    }
 }
