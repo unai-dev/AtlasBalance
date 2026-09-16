@@ -70,7 +70,8 @@ public class UsersController : ControllerBase
     /// </summary>
     /// <param name="ID">ID del usuario</param>
     /// <param name="languageID">ID del lenguaje</param>
-    public async Task<IActionResult> UpdateLanguage(int ID, int languageID)
+    [HttpPut("{ID}")]
+    public async Task<IActionResult> UpdateLanguage(int ID, [FromBody] int languageID)
     {
         await _service.UpdateLanguage(ID, languageID);
         return Ok();

@@ -11,8 +11,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-using Scalar.AspNetCore;
-
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  |                                          SERVICES
@@ -25,7 +23,7 @@ var builder = WebApplication.CreateBuilder(args);
  |                                          OPENAPI
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  */
-builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  |                                          CONTROLLERS
@@ -132,8 +130,9 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.MapSwagger().RequireAuthorization();
 }
 
 /**
