@@ -26,6 +26,8 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<PaymentMethod> PaymentMethods => Set<PaymentMethod>();
     public DbSet<Account> Accounts => Set<Account>();
     public DbSet<ExpensesGroup> ExpensesGroups => Set<ExpensesGroup>();
+    public DbSet<Language> Languages => Set<Language>();
+    public DbSet<LanguageResource> LanguageResources => Set<LanguageResource>();
 
     /// <summary>
     /// Override the OnModelCreating method to apply entity configurations for the database context.
@@ -41,5 +43,7 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
         builder.ApplyConfiguration(new PaymentMethodConfiguration());
         builder.ApplyConfiguration(new AccountConfiguration());
         builder.ApplyConfiguration(new ExpensesGroupConfiguration());
+        builder.ApplyConfiguration(new LanguageConfiguration());
+        builder.ApplyConfiguration(new LanguageResourceConfiguration());
     }
 }
