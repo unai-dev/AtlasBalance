@@ -4,6 +4,7 @@ using AtlasBalance.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBalance.Infrastructure.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260916081238_create_languages_table_language_resources_table")]
+    partial class create_languages_table_language_resources_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -341,6 +344,9 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.Property<int>("LanguageID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LanguageResourceID")
+                        .HasColumnType("int");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -380,6 +386,8 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LanguageID");
+
+                    b.HasIndex("LanguageResourceID");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -626,10 +634,14 @@ namespace AtlasBalance.Infrastructure.Migrations
             modelBuilder.Entity("AtlasBalance.Domain.Models.User", b =>
                 {
                     b.HasOne("AtlasBalance.Domain.Models.Language", "Language")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("LanguageID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("AtlasBalance.Domain.Models.LanguageResource", null)
+                        .WithMany("Users")
+                        .HasForeignKey("LanguageResourceID");
 
                     b.Navigation("Language");
                 });
@@ -707,7 +719,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.Navigation("Expenses");
                 });
 
-            modelBuilder.Entity("AtlasBalance.Domain.Models.Language", b =>
+            modelBuilder.Entity("AtlasBalance.Domain.Models.LanguageResource", b =>
                 {
                     b.Navigation("Users");
                 });

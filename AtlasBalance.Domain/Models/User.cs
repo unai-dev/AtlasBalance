@@ -9,6 +9,9 @@ public class User: IdentityUser<int>
     public DateTime? UpdatedAt { get; set; }
 
     //related properties
+    public int LanguageID { get; set; }
+    public Language? Language { get; set; }
+
     public List<Account> Accounts { get; set; } = new List<Account>();
     public List<Expense> Expenses { get; set; } = new List<Expense>();
     public List<ExpensesGroup> OwnedGroups { get; set; } = new List<ExpensesGroup>();
