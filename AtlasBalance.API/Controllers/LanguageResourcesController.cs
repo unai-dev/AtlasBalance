@@ -1,5 +1,6 @@
 using AtlasBalance.Application.DTOs.LanguageResource;
 using AtlasBalance.Application.Interfaces;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,13 @@ public class LanguageResourcesController : ControllerBase
     /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<LanguageResourceReadDto>>> GetAll() => Ok(await _service.GetAll());
+
+    /// <summary>
+    /// Obtiene todos los recursos del idioma del usuario actual.
+    /// </summary>
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<LanguageResourceReadDto>>> GetAllWithLanguageID()
+        => Ok(await _service.GetAllWithLanguageID());
 
     /// <summary>
     /// Obtiene un recurso de idioma por ID.

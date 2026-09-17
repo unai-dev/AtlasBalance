@@ -13,15 +13,28 @@ public class LanguageResourceService : ILanguageResourceService
 {
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
+    private readonly IUserService _userService;
 
-    public LanguageResourceService(AtlasDbContext context, IMapper mapper)
+    public LanguageResourceService(AtlasDbContext context, IMapper mapper, IUserService userService)
     {
         _context = context;
         _mapper = mapper;
+        _userService = userService;
     }
 
     public async Task<IEnumerable<LanguageResourceReadDto>> GetAll()
         => _mapper.Map<IEnumerable<LanguageResourceReadDto>>(await _context.LanguageResources.AsNoTracking().ToListAsync());
+
+    public async Task<IEnumerable<LanguageResourceReadDto>> GetAllWithLanguageID()
+    {
+        var user = await _userService.GetCurrentUser();
+        var languageID = user.LanguageID;
+        
+        return _mapper.Map<IEnumerable<LanguageResourceReadDto>>(await _context.LanguageResources
+            .Where(x => x.LanguageID == languageID)
+            .AsNoTracking()
+            .ToListAsync());
+    }
 
     public async Task<LanguageResourceReadDto> GetOne(int ID)
     {

@@ -9,4 +9,5 @@ public interface ILanguageResourceService
     Task<LanguageResourceReadWithRelationsDto> GetOneWithRelations(int ID);
     Task<LanguageResourceReadDto> Create(LanguageResourceCreateDto dto);
     Task Delete(int ID);
+    Task<IEnumerable<LanguageResourceReadDto>> GetAllWithLanguageID();
 }
