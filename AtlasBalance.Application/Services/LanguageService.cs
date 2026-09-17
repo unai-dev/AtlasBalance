@@ -6,6 +6,7 @@ using AtlasBalance.Infrastructure;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AtlasBalance.Application.Services;
 
@@ -13,11 +14,13 @@ public class LanguageService : ILanguageService
 {
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
+    private readonly ILogger<LanguageService> _logger;
 
-    public LanguageService(AtlasDbContext context, IMapper mapper)
+    public LanguageService(AtlasDbContext context, IMapper mapper, ILogger<LanguageService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<LanguageReadDto>> GetAll()
@@ -55,6 +58,8 @@ public class LanguageService : ILanguageService
         _context.Languages.Add(language);
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("Created Language with ID {Id} code {Code}", language.ID, language.Code);
+
         return _mapper.Map<LanguageReadDto>(language);
     }
 
@@ -66,5 +71,7 @@ public class LanguageService : ILanguageService
 
         _context.Languages.Remove(language);
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Deleted Language with ID {Id}", ID);
     }
 }

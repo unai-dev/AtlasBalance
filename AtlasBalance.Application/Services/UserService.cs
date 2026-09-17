@@ -9,6 +9,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AtlasBalance.Application.Services;
 
@@ -18,13 +19,15 @@ public class UserService : IUserService
     private readonly UserManager<User> _userManager;
     private readonly IHttpContextAccessor _http;
     private readonly AtlasDbContext _context;
+    private readonly ILogger<UserService> _logger;
 
-    public UserService(IMapper mapper, UserManager<User> userManager, IHttpContextAccessor http, AtlasDbContext context)
+    public UserService(IMapper mapper, UserManager<User> userManager, IHttpContextAccessor http, AtlasDbContext context, ILogger<UserService> logger)
     {
         _mapper = mapper;
         _userManager = userManager;
         _http = http;
         _context = context;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<UserReadDto>> GetAll()
@@ -82,7 +85,12 @@ public class UserService : IUserService
         var result = await _userManager.CreateAsync(user, dto.Password);
 
         if (!result.Succeeded)
+        {
+            _logger.LogError("Failed to create user {Email}: {Errors}", dto.Email, result.Errors);
             throw new BadRequestException("Failed to create user");
+        }
+
+        _logger.LogInformation("Created user {Email}", dto.Email);
 
         return _mapper.Map<UserReadDto>(user);
     }
@@ -95,7 +103,12 @@ public class UserService : IUserService
         var result = await _userManager.DeleteAsync(user);
 
         if (!result.Succeeded)
+        {
+            _logger.LogError("Failed to delete user with ID {Id}: {Errors}", ID, result.Errors);
             throw new BadRequestException("Failed to delete user");
+        }
+
+        _logger.LogInformation("Deleted user with ID {Id}", ID);
     }
 
     public async Task UpdateLanguage(int ID, int languageID)
@@ -109,6 +122,12 @@ public class UserService : IUserService
         user.LanguageID = languageID;
 
         var result = await _userManager.UpdateAsync(user);
-        if (!result.Succeeded) throw new BadRequestException($"Error updating language");
+        if (!result.Succeeded)
+        {
+            _logger.LogError("Failed to update language for user {Id}: {Errors}", ID, result.Errors);
+            throw new BadRequestException($"Error updating language");
+        }
+
+        _logger.LogInformation("Updated language for user {Id} to {LanguageId}", ID, languageID);
     }
 }

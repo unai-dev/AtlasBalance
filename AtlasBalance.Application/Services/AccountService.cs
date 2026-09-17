@@ -6,6 +6,7 @@ using AtlasBalance.Infrastructure;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AtlasBalance.Application.Services;
 
@@ -13,11 +14,13 @@ public class AccountService : IAccountService
 {
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
+    private readonly ILogger<AccountService> _logger;
 
-    public AccountService(AtlasDbContext context, IMapper mapper)
+    public AccountService(AtlasDbContext context, IMapper mapper, ILogger<AccountService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<AccountReadDto>> GetAll()
@@ -63,6 +66,8 @@ public class AccountService : IAccountService
         _context.Accounts.Add(account);
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("Created Account with ID {Id} for user {UserId}", account.ID, account.UserID);
+
         return _mapper.Map<AccountReadDto>(account);
     }
 
@@ -74,5 +79,7 @@ public class AccountService : IAccountService
 
         _context.Accounts.Remove(account);
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Deleted Account with ID {Id}", ID);
     }
 }

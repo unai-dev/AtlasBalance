@@ -13,6 +13,7 @@ using AutoMapper;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace AtlasBalance.Application.Services;
@@ -30,16 +31,20 @@ public class AuthService: IAuthService
     private readonly SignInManager<User> _signInManager;
     private readonly IConfiguration _configuration;
     private readonly IMapper _mapper;
+    private readonly ILogger<AuthService> _logger;
 
     /// <summary>
     /// Constructor.
     /// </summary>
-    public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration, IMapper mapper)
+    public AuthService(UserManager<User> userManager, 
+        SignInManager<User> signInManager, IConfiguration configuration,
+        IMapper mapper, ILogger<AuthService> logger)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _configuration = configuration;
         _mapper = mapper;
+        _logger = logger;
     }
 
     /// <summary>
@@ -62,7 +67,9 @@ public class AuthService: IAuthService
         var result = await _userManager.CreateAsync(newUser, dto.Password);
 
         if (!result.Succeeded)
-            throw new BadRequestException($"Failed to create user");
+        {
+             throw new BadRequestException($"Failed to create user");
+        } 
 
         return _mapper.Map<UserReadDto>(newUser);
     }

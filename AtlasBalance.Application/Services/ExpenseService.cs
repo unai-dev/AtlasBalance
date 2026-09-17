@@ -6,6 +6,7 @@ using AtlasBalance.Infrastructure;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AtlasBalance.Application.Services;
 
@@ -13,11 +14,13 @@ public class ExpenseService : IExpenseService
 {
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
+    private readonly ILogger<ExpenseService> _logger;
 
-    public ExpenseService(AtlasDbContext context, IMapper mapper)
+    public ExpenseService(AtlasDbContext context, IMapper mapper, ILogger<ExpenseService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<ExpenseReadDto>> GetAll()
@@ -77,6 +80,8 @@ public class ExpenseService : IExpenseService
         _context.Expenses.Add(expense);
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("Created Expense with ID {Id} for user {UserId} amount {Amount}", expense.ID, expense.UserID, expense.Amount);
+
         return _mapper.Map<ExpenseReadDto>(expense);
     }
 
@@ -88,5 +93,7 @@ public class ExpenseService : IExpenseService
 
         _context.Expenses.Remove(expense);
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Deleted Expense with ID {Id}", ID);
     }
 }

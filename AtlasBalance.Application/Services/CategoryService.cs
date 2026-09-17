@@ -9,6 +9,7 @@ using AtlasBalance.Domain.Models;
 using AtlasBalance.Infrastructure;
 
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -18,11 +19,13 @@ public class CategoryService : ICategoryService
 {
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
+    private readonly ILogger<CategoryService> _logger;
 
-    public CategoryService(AtlasDbContext context, IMapper mapper)
+    public CategoryService(AtlasDbContext context, IMapper mapper, ILogger<CategoryService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<CategoryReadDto>> GetAll()
@@ -64,6 +67,8 @@ public class CategoryService : ICategoryService
         _context.Categories.Add(category);
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("Created Category with ID {Id} name {Name}", category.ID, category.Name);
+
         return _mapper.Map<CategoryReadDto>(category);
     }
 
@@ -75,6 +80,8 @@ public class CategoryService : ICategoryService
 
         _context.Categories.Remove(category);
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Deleted Category with ID {Id}", ID);
     }
 
 }

@@ -6,6 +6,7 @@ using AtlasBalance.Infrastructure;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AtlasBalance.Application.Services;
 
@@ -13,11 +14,13 @@ public class CurrencyService : ICurrencyService
 {
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
+    private readonly ILogger<CurrencyService> _logger;
 
-    public CurrencyService(AtlasDbContext context, IMapper mapper)
+    public CurrencyService(AtlasDbContext context, IMapper mapper, ILogger<CurrencyService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<CurrencyReadDto>> GetAll()
@@ -55,6 +58,8 @@ public class CurrencyService : ICurrencyService
         _context.Currencies.Add(currency);
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("Created Currency with ID {Id} code {Code}", currency.ID, currency.CodeISO);
+
         return _mapper.Map<CurrencyReadDto>(currency);
     }
 
@@ -66,5 +71,7 @@ public class CurrencyService : ICurrencyService
 
         _context.Currencies.Remove(currency);
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Deleted Currency with ID {Id}", ID);
     }
 }

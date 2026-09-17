@@ -5,6 +5,7 @@ using AtlasBalance.Domain.Models;
 using AtlasBalance.Infrastructure;
 
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,13 +18,15 @@ public class ExpensesGroupService : IExpensesGroupService
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
     private readonly IUserService _userService;
+    private readonly ILogger<ExpensesGroupService> _logger;
 
-    public ExpensesGroupService(AtlasDbContext context, IMapper mapper, UserManager<User> userManager, IUserService userService)
+    public ExpensesGroupService(AtlasDbContext context, IMapper mapper, UserManager<User> userManager, IUserService userService, ILogger<ExpensesGroupService> logger)
     {
         _context = context;
         _mapper = mapper;
         _userManager = userManager;
         _userService = userService;
+        _logger = logger;
     }
 
 
@@ -70,6 +73,8 @@ public class ExpensesGroupService : IExpensesGroupService
         _context.ExpensesGroups.Add(group);
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("Created ExpensesGroup with ID {Id} owner {OwnerId}", group.ID, group.OwnerID);
+
         return _mapper.Map<ExpensesGroupReadDto>(group);
     }
 
@@ -81,5 +86,7 @@ public class ExpensesGroupService : IExpensesGroupService
         _context.ExpensesGroups.Remove(group);
 
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Deleted ExpensesGroup with ID {Id}", ID);
     }
 }

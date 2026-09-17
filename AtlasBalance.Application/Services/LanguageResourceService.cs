@@ -6,6 +6,7 @@ using AtlasBalance.Infrastructure;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AtlasBalance.Application.Services;
 
@@ -14,12 +15,14 @@ public class LanguageResourceService : ILanguageResourceService
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly IUserService _userService;
+    private readonly ILogger<LanguageResourceService> _logger;
 
-    public LanguageResourceService(AtlasDbContext context, IMapper mapper, IUserService userService)
+    public LanguageResourceService(AtlasDbContext context, IMapper mapper, IUserService userService, ILogger<LanguageResourceService> logger)
     {
         _context = context;
         _mapper = mapper;
         _userService = userService;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<LanguageResourceReadDto>> GetAll()
@@ -71,6 +74,8 @@ public class LanguageResourceService : ILanguageResourceService
         _context.LanguageResources.Add(resource);
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("Created LanguageResource with ID {Id} text {Text}", resource.ID, resource.Text);
+
         return _mapper.Map<LanguageResourceReadDto>(resource);
     }
 
@@ -82,5 +87,7 @@ public class LanguageResourceService : ILanguageResourceService
 
         _context.LanguageResources.Remove(resource);
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Deleted LanguageResource with ID {Id}", ID);
     }
 }

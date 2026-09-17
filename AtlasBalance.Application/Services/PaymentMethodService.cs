@@ -6,6 +6,7 @@ using AtlasBalance.Infrastructure;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AtlasBalance.Application.Services;
 
@@ -13,11 +14,13 @@ public class PaymentMethodService : IPaymentMethodService
 {
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
+    private readonly ILogger<PaymentMethodService> _logger;
 
-    public PaymentMethodService(AtlasDbContext context, IMapper mapper)
+    public PaymentMethodService(AtlasDbContext context, IMapper mapper, ILogger<PaymentMethodService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<PaymentMethodReadDto>> GetAll()
@@ -55,6 +58,8 @@ public class PaymentMethodService : IPaymentMethodService
         _context.PaymentMethods.Add(pm);
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("Created PaymentMethod with ID {Id} and provider {Provider}", pm.ID, pm.ProviderName);
+
         return _mapper.Map<PaymentMethodReadDto>(pm);
     }
 
@@ -66,5 +71,7 @@ public class PaymentMethodService : IPaymentMethodService
 
         _context.PaymentMethods.Remove(pm);
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Deleted PaymentMethod with ID {Id}", ID);
     }
 }
