@@ -9,7 +9,7 @@ public class User: IdentityUser<int>
     public DateTime? UpdatedAt { get; set; }
 
     //related properties
-    public int LanguageID { get; set; }
+    public int LanguageID { get; set; } = 1;
     public Language? Language { get; set; }
 
     public List<Account> Accounts { get; set; } = new List<Account>();
