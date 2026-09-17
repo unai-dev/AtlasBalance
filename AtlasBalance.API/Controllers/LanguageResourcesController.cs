@@ -24,12 +24,13 @@ public class LanguageResourcesController : ControllerBase
     /// Obtiene todos los recursos de idioma.
     /// </summary>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<LanguageResourceReadDto>>> GetAll() => Ok(await _service.GetAll());
+    public async Task<ActionResult<IEnumerable<LanguageResourceReadDto>>> GetAll() 
+        => Ok(await _service.GetAll());
 
     /// <summary>
     /// Obtiene todos los recursos del idioma del usuario actual.
     /// </summary>
-    [HttpGet]
+    [HttpGet("language")]
     public async Task<ActionResult<IEnumerable<LanguageResourceReadDto>>> GetAllWithLanguageID()
         => Ok(await _service.GetAllWithLanguageID());
 
