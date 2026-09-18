@@ -1,15 +1,13 @@
 using System;
 using AtlasBalance.Application.DTOs.Common;
 
-namespace AtlasBalance.Application.DTOs.Expense;
+namespace AtlasBalance.Application.DTOs.Transfer;
 
-public class ExpenseReadDto : ReadDtoBase
+public class TransferReadDto : ReadDtoBase
 {
     public double Amount { get; set; }
 
     public string Description { get; set; } = null!;
-
-    public DateTime MovementDate { get; set; }
 
     public int UserID { get; set; }
 
@@ -21,5 +19,9 @@ public class ExpenseReadDto : ReadDtoBase
 
     public int AccountID { get; set; }
 
-    public int ExpensesGroupID { get; set; }
+    public string Addressee { get; set; } = null!;
+
+    public string Sender { get; set; } = null!;
+
+    public DateTime MovementDate { get; set; }
 }

@@ -1,11 +1,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AtlasBalance.Application.DTOs.Expense;
+namespace AtlasBalance.Application.DTOs.Transfer;
 
-public class ExpenseUpdateDto
+public class TransferUpdateDto
 {
     public double Amount { get; set; }
+
     [StringLength(2000)]
     public string? Description { get; set; }
 
@@ -19,7 +20,11 @@ public class ExpenseUpdateDto
 
     public int? AccountID { get; set; }
 
-    public int? ExpensesGroupID { get; set; }
+    [StringLength(200)]
+    public string? Addressee { get; set; }
+
+    [StringLength(200)]
+    public string? Sender { get; set; }
 
     public DateTime? MovementDate { get; set; }
 

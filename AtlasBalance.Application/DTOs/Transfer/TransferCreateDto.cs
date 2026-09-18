@@ -1,8 +1,9 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AtlasBalance.Application.DTOs.Expense;
+namespace AtlasBalance.Application.DTOs.Transfer;
 
-public class ExpenseCreateDto
+public class TransferCreateDto
 {
     public double Amount { get; set; }
 
@@ -20,7 +21,13 @@ public class ExpenseCreateDto
 
     public int AccountID { get; set; }
 
-    public int ExpensesGroupID { get; set;  }
+    [Required]
+    [StringLength(55)]
+    public string Addressee { get; set; } = null!;
+
+    [Required]
+    [StringLength(55)]
+    public string Sender { get; set; } = null!;
 
     public DateTime MovementDate { get; set; }
 }
