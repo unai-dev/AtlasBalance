@@ -22,4 +22,5 @@ public class ExpensesGroup : BaseModel
     public Category? Category { get; set; }
 
     public List<Expense> Expenses { get; set; } = new List<Expense>();
+    public List<Transfer> Transfers { get; set; } = new List<Transfer>();
 }

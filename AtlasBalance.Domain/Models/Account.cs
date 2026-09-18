@@ -18,4 +18,5 @@ public class Account: BaseModel
     public User? User { get; set; } = null!;
     public int UserID { get; set; }
     public List<Expense> Expenses { get; set; } = new List<Expense>();
+    public List<Transfer> Transfers { get; set; } = new List<Transfer>();
 }

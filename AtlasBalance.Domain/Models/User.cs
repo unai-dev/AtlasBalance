@@ -16,4 +16,5 @@ public class User: IdentityUser<int>
     public List<Expense> Expenses { get; set; } = new List<Expense>();
     public List<ExpensesGroup> OwnedGroups { get; set; } = new List<ExpensesGroup>();
     public List<ExpensesGroup> GuestGroups { get; set; } = new List<ExpensesGroup>();
+    public List<Transfer> Transfers { get; set; } = new List<Transfer>();
 }

@@ -21,6 +21,7 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
      | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
      */
     public DbSet<Expense> Expenses => Set<Expense>();
+    public DbSet<Transfer> Transfers => Set<Transfer>();
     public DbSet<Currency> Currencies => Set<Currency>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<PaymentMethod> PaymentMethods => Set<PaymentMethod>();
@@ -45,5 +46,6 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
         builder.ApplyConfiguration(new ExpensesGroupConfiguration());
         builder.ApplyConfiguration(new LanguageConfiguration());
         builder.ApplyConfiguration(new LanguageResourceConfiguration());
+        builder.ApplyConfiguration(new TransferConfiguration());
     }
 }

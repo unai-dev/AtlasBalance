@@ -14,4 +14,5 @@ public class PaymentMethod : BaseModel
 
     //related properties
     public List<Expense> Expenses { get; set; } = new List<Expense>();
+    public List<Transfer> Transfers { get; set; } = new List<Transfer>();
 }
