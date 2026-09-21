@@ -29,5 +29,13 @@ public class CurrencyConfiguration: IEntityTypeConfiguration<Currency>
         builder.Property(x => x.Symbol)
             .HasMaxLength(1)
             .IsRequired();
+
+        // Seed default currencies
+        builder.HasData(
+            new Currency { ID = 1, CodeISO = "USD", Name = "US Dollar", Symbol = "$", CreatedAt = DateTime.UtcNow },
+            new Currency { ID = 2, CodeISO = "EUR", Name = "Euro", Symbol = "€", CreatedAt = DateTime.UtcNow },
+            new Currency { ID = 3, CodeISO = "GBP", Name = "Pound Sterling", Symbol = "£", CreatedAt = DateTime.UtcNow },
+            new Currency { ID = 4, CodeISO = "JPY", Name = "Japanese Yen", Symbol = "¥", CreatedAt = DateTime.UtcNow }
+        );
     }  
 }
