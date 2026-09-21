@@ -9,5 +9,6 @@ public class Language: BaseModel
 
     //related properties
     public List<User> Users { get; set; } = new List<User>();
+    public List<LanguageResource> LanguageResources = new List<LanguageResource>();
 
 }
