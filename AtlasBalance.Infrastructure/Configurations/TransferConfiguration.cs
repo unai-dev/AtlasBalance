@@ -13,6 +13,13 @@ public class TransferConfiguration: IEntityTypeConfiguration<Transfer>
 
         builder.HasKey(x => x.ID);
 
+        builder.Property(x => x.Amount)
+            .IsRequired();
+
+        builder.Property(x => x.Description)
+            .HasMaxLength(2000)
+            .IsRequired();
+
         builder.Property(x => x.Addressee)
             .HasMaxLength(55)
             .IsRequired();
