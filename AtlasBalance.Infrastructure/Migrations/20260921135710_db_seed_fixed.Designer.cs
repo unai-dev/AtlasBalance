@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBalance.Infrastructure.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    [Migration("20260921102057_add_validation_rules_to_transfers_table")]
-    partial class add_validation_rules_to_transfers_table
+    [Migration("20260921135710_db_seed_fixed")]
+    partial class db_seed_fixed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,49 +94,49 @@ namespace AtlasBalance.Infrastructure.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 91, DateTimeKind.Utc).AddTicks(9846),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Food"
                         },
                         new
                         {
                             ID = 2,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 91, DateTimeKind.Utc).AddTicks(9861),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Transport"
                         },
                         new
                         {
                             ID = 3,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 91, DateTimeKind.Utc).AddTicks(9864),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Utilities"
                         },
                         new
                         {
                             ID = 4,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 91, DateTimeKind.Utc).AddTicks(9867),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Entertainment"
                         },
                         new
                         {
                             ID = 5,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 91, DateTimeKind.Utc).AddTicks(9870),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Health"
                         },
                         new
                         {
                             ID = 6,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 91, DateTimeKind.Utc).AddTicks(9873),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Education"
                         },
                         new
                         {
                             ID = 7,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 91, DateTimeKind.Utc).AddTicks(9876),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Shopping"
                         },
                         new
                         {
                             ID = 8,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 91, DateTimeKind.Utc).AddTicks(9879),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Others"
                         });
                 });
@@ -179,7 +179,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                         {
                             ID = 1,
                             CodeISO = "USD",
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 90, DateTimeKind.Utc).AddTicks(1012),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "US Dollar",
                             Symbol = "$"
                         },
@@ -187,7 +187,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                         {
                             ID = 2,
                             CodeISO = "EUR",
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 90, DateTimeKind.Utc).AddTicks(2299),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Euro",
                             Symbol = "€"
                         },
@@ -195,7 +195,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                         {
                             ID = 3,
                             CodeISO = "GBP",
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 90, DateTimeKind.Utc).AddTicks(2305),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Pound Sterling",
                             Symbol = "£"
                         },
@@ -203,7 +203,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                         {
                             ID = 4,
                             CodeISO = "JPY",
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 90, DateTimeKind.Utc).AddTicks(2308),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Japanese Yen",
                             Symbol = "¥"
                         });
@@ -346,14 +346,14 @@ namespace AtlasBalance.Infrastructure.Migrations
                         {
                             ID = 1,
                             Code = "en",
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 102, DateTimeKind.Utc).AddTicks(5817),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "English"
                         },
                         new
                         {
                             ID = 2,
                             Code = "es",
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 102, DateTimeKind.Utc).AddTicks(5833),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Español"
                         });
                 });
@@ -422,28 +422,28 @@ namespace AtlasBalance.Infrastructure.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 92, DateTimeKind.Utc).AddTicks(8654),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             MethodType = "Cash",
                             ProviderName = "General"
                         },
                         new
                         {
                             ID = 2,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 92, DateTimeKind.Utc).AddTicks(8670),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             MethodType = "Card",
                             ProviderName = "Visa"
                         },
                         new
                         {
                             ID = 3,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 92, DateTimeKind.Utc).AddTicks(8673),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             MethodType = "Card",
                             ProviderName = "Mastercard"
                         },
                         new
                         {
                             ID = 4,
-                            CreatedAt = new DateTime(2026, 9, 21, 10, 20, 57, 92, DateTimeKind.Utc).AddTicks(8675),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             MethodType = "BankTransfer",
                             ProviderName = "SEPA"
                         });

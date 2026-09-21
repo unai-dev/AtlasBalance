@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AtlasBalance.Infrastructure.Configurations;
 
-public class PaymentMethodConfiguration: IEntityTypeConfiguration<PaymentMethod>
+public class PaymentMethodConfiguration : IEntityTypeConfiguration<PaymentMethod>
 {
     public void Configure(EntityTypeBuilder<PaymentMethod> builder)
     {
@@ -22,10 +22,10 @@ public class PaymentMethodConfiguration: IEntityTypeConfiguration<PaymentMethod>
 
         // Seed default payment methods
         builder.HasData(
-            new PaymentMethod { ID = 1, MethodType = "Cash", ProviderName = "General", CreatedAt = DateTime.UtcNow },
-            new PaymentMethod { ID = 2, MethodType = "Card", ProviderName = "Visa", CreatedAt = DateTime.UtcNow },
-            new PaymentMethod { ID = 3, MethodType = "Card", ProviderName = "Mastercard", CreatedAt = DateTime.UtcNow },
-            new PaymentMethod { ID = 4, MethodType = "BankTransfer", ProviderName = "SEPA", CreatedAt = DateTime.UtcNow }
+            new PaymentMethod { ID = 1, MethodType = "Cash", ProviderName = "General", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new PaymentMethod { ID = 2, MethodType = "Card", ProviderName = "Visa", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new PaymentMethod { ID = 3, MethodType = "Card", ProviderName = "Mastercard", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new PaymentMethod { ID = 4, MethodType = "BankTransfer", ProviderName = "SEPA", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) }
         );
     }
 }

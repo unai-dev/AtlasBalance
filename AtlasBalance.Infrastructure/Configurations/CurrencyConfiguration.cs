@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace AtlasBalance.Infrastructure.Configurations;
 
-public class CurrencyConfiguration: IEntityTypeConfiguration<Currency>
+public class CurrencyConfiguration : IEntityTypeConfiguration<Currency>
 {
     public void Configure(EntityTypeBuilder<Currency> builder)
     {
@@ -32,10 +32,10 @@ public class CurrencyConfiguration: IEntityTypeConfiguration<Currency>
 
         // Seed default currencies
         builder.HasData(
-            new Currency { ID = 1, CodeISO = "USD", Name = "US Dollar", Symbol = "$", CreatedAt = DateTime.UtcNow },
-            new Currency { ID = 2, CodeISO = "EUR", Name = "Euro", Symbol = "€", CreatedAt = DateTime.UtcNow },
-            new Currency { ID = 3, CodeISO = "GBP", Name = "Pound Sterling", Symbol = "£", CreatedAt = DateTime.UtcNow },
-            new Currency { ID = 4, CodeISO = "JPY", Name = "Japanese Yen", Symbol = "¥", CreatedAt = DateTime.UtcNow }
+            new Currency { ID = 1, CodeISO = "USD", Name = "US Dollar", Symbol = "$", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Currency { ID = 2, CodeISO = "EUR", Name = "Euro", Symbol = "€", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Currency { ID = 3, CodeISO = "GBP", Name = "Pound Sterling", Symbol = "£", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Currency { ID = 4, CodeISO = "JPY", Name = "Japanese Yen", Symbol = "¥", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) }
         );
-    }  
+    }
 }

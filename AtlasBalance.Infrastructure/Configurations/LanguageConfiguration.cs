@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AtlasBalance.Infrastructure.Configurations;
 
-public class LanguageConfiguration: IEntityTypeConfiguration<Language>
+public class LanguageConfiguration : IEntityTypeConfiguration<Language>
 {
     public void Configure(EntityTypeBuilder<Language> builder)
     {
@@ -23,8 +23,8 @@ public class LanguageConfiguration: IEntityTypeConfiguration<Language>
 
         // Seed default languages
         builder.HasData(
-            new Language { ID = 1, Code = "en", Name = "English", CreatedAt = DateTime.UtcNow },
-            new Language { ID = 2, Code = "es", Name = "Español", CreatedAt = DateTime.UtcNow }
+            new Language { ID = 1, Code = "en", Name = "English", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Language { ID = 2, Code = "es", Name = "Español", CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) }
         );
     }
 }

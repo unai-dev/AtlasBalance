@@ -8,24 +8,35 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AtlasBalance.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class db_seed_initialize : Migration
+    public partial class db_seed_fixed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<string>(
+                name: "Description",
+                table: "transfers",
+                type: "varchar(2000)",
+                maxLength: 2000,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "longtext")
+                .Annotation("MySql:CharSet", "utf8mb4")
+                .OldAnnotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.InsertData(
                 table: "categories",
                 columns: new[] { "ID", "CreatedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 9, 21, 9, 34, 58, 993, DateTimeKind.Utc).AddTicks(8479), "Food", null },
-                    { 2, new DateTime(2026, 9, 21, 9, 34, 58, 993, DateTimeKind.Utc).AddTicks(8494), "Transport", null },
-                    { 3, new DateTime(2026, 9, 21, 9, 34, 58, 993, DateTimeKind.Utc).AddTicks(8497), "Utilities", null },
-                    { 4, new DateTime(2026, 9, 21, 9, 34, 58, 993, DateTimeKind.Utc).AddTicks(8500), "Entertainment", null },
-                    { 5, new DateTime(2026, 9, 21, 9, 34, 58, 993, DateTimeKind.Utc).AddTicks(8502), "Health", null },
-                    { 6, new DateTime(2026, 9, 21, 9, 34, 58, 993, DateTimeKind.Utc).AddTicks(8505), "Education", null },
-                    { 7, new DateTime(2026, 9, 21, 9, 34, 58, 993, DateTimeKind.Utc).AddTicks(8507), "Shopping", null },
-                    { 8, new DateTime(2026, 9, 21, 9, 34, 58, 993, DateTimeKind.Utc).AddTicks(8510), "Others", null }
+                    { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Food", null },
+                    { 2, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Transport", null },
+                    { 3, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Utilities", null },
+                    { 4, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Entertainment", null },
+                    { 5, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Health", null },
+                    { 6, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Education", null },
+                    { 7, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Shopping", null },
+                    { 8, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Others", null }
                 });
 
             migrationBuilder.InsertData(
@@ -33,10 +44,10 @@ namespace AtlasBalance.Infrastructure.Migrations
                 columns: new[] { "ID", "CodeISO", "CreatedAt", "Name", "Symbol", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, "USD", new DateTime(2026, 9, 21, 9, 34, 58, 992, DateTimeKind.Utc).AddTicks(906), "US Dollar", "$", null },
-                    { 2, "EUR", new DateTime(2026, 9, 21, 9, 34, 58, 992, DateTimeKind.Utc).AddTicks(1452), "Euro", "€", null },
-                    { 3, "GBP", new DateTime(2026, 9, 21, 9, 34, 58, 992, DateTimeKind.Utc).AddTicks(1456), "Pound Sterling", "£", null },
-                    { 4, "JPY", new DateTime(2026, 9, 21, 9, 34, 58, 992, DateTimeKind.Utc).AddTicks(1459), "Japanese Yen", "¥", null }
+                    { 1, "USD", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "US Dollar", "$", null },
+                    { 2, "EUR", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Euro", "€", null },
+                    { 3, "GBP", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Pound Sterling", "£", null },
+                    { 4, "JPY", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Japanese Yen", "¥", null }
                 });
 
             migrationBuilder.InsertData(
@@ -44,8 +55,8 @@ namespace AtlasBalance.Infrastructure.Migrations
                 columns: new[] { "ID", "Code", "CreatedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, "en", new DateTime(2026, 9, 21, 9, 34, 59, 5, DateTimeKind.Utc).AddTicks(3423), "English", null },
-                    { 2, "es", new DateTime(2026, 9, 21, 9, 34, 59, 5, DateTimeKind.Utc).AddTicks(3439), "Español", null }
+                    { 1, "en", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "English", null },
+                    { 2, "es", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Español", null }
                 });
 
             migrationBuilder.InsertData(
@@ -53,10 +64,10 @@ namespace AtlasBalance.Infrastructure.Migrations
                 columns: new[] { "ID", "CreatedAt", "MethodType", "ProviderName", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 9, 21, 9, 34, 58, 994, DateTimeKind.Utc).AddTicks(7383), "Cash", "General", null },
-                    { 2, new DateTime(2026, 9, 21, 9, 34, 58, 994, DateTimeKind.Utc).AddTicks(7398), "Card", "Visa", null },
-                    { 3, new DateTime(2026, 9, 21, 9, 34, 58, 994, DateTimeKind.Utc).AddTicks(7401), "Card", "Mastercard", null },
-                    { 4, new DateTime(2026, 9, 21, 9, 34, 58, 994, DateTimeKind.Utc).AddTicks(7404), "BankTransfer", "SEPA", null }
+                    { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Cash", "General", null },
+                    { 2, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Card", "Visa", null },
+                    { 3, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Card", "Mastercard", null },
+                    { 4, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "BankTransfer", "SEPA", null }
                 });
         }
 
@@ -152,6 +163,17 @@ namespace AtlasBalance.Infrastructure.Migrations
                 table: "payment_methods",
                 keyColumn: "ID",
                 keyValue: 4);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Description",
+                table: "transfers",
+                type: "longtext",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "varchar(2000)",
+                oldMaxLength: 2000)
+                .Annotation("MySql:CharSet", "utf8mb4")
+                .OldAnnotation("MySql:CharSet", "utf8mb4");
         }
     }
 }
