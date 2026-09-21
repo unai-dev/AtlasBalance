@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 
+using AtlasBalance.Application.Responses;
 using AtlasBalance.Domain.Exceptions;
 
 namespace AtlasBalance.API.Middlewares;
@@ -48,5 +49,3 @@ public class CatchExceptionMiddleware
     }
 
 }
-
-internal record CatchExceptionResponse(int StatusCode, string Message);
