@@ -9,7 +9,7 @@ public class PaymentMethodConfiguration : IEntityTypeConfiguration<PaymentMethod
 {
     public void Configure(EntityTypeBuilder<PaymentMethod> builder)
     {
-        builder.ToTable("payment_methods");
+        builder.ToTable("asp_PaymentMethods");
 
         builder.HasKey(x => x.ID);
 

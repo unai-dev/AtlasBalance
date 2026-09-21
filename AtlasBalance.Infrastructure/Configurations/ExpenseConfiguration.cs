@@ -9,7 +9,7 @@ public class ExpenseConfiguration: IEntityTypeConfiguration<Expense>
 {
     public void Configure(EntityTypeBuilder<Expense> builder)
     {
-        builder.ToTable("expenses");
+        builder.ToTable("asp_Expenses");
 
         builder.HasKey(x => x.ID);
 

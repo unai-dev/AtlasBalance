@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AtlasBalance.Infrastructure.Configurations;
 
-public class LanguageResourceConfiguration: IEntityTypeConfiguration<LanguageResource>
+public class LanguageResourceConfiguration : IEntityTypeConfiguration<LanguageResource>
 {
     public void Configure(EntityTypeBuilder<LanguageResource> builder)
     {
-        builder.ToTable("language_resources");
+        builder.ToTable("asp_LanguageResources");
 
         builder.HasKey(x => x.ID);
 
         builder.Property(x => x.Text)
             .IsRequired();
-        
+
         builder.Property(x => x.Description)
             .IsRequired();
     }

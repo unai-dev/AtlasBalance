@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AtlasBalance.Infrastructure.Configurations;
 
-public class AccountConfiguration: IEntityTypeConfiguration<Account>
+public class AccountConfiguration : IEntityTypeConfiguration<Account>
 {
     public void Configure(EntityTypeBuilder<Account> builder)
     {
-        builder.ToTable("accounts");
+        builder.ToTable("asp_accounts");
 
         builder.HasKey(x => x.ID);
 

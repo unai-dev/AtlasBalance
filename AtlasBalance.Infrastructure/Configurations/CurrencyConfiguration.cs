@@ -14,7 +14,7 @@ public class CurrencyConfiguration : IEntityTypeConfiguration<Currency>
 {
     public void Configure(EntityTypeBuilder<Currency> builder)
     {
-        builder.ToTable("currencies");
+        builder.ToTable("asp_Currencies");
 
         builder.HasKey(x => x.ID);
 

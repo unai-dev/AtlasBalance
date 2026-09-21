@@ -9,7 +9,7 @@ public class LanguageConfiguration : IEntityTypeConfiguration<Language>
 {
     public void Configure(EntityTypeBuilder<Language> builder)
     {
-        builder.ToTable("languages");
+        builder.ToTable("asp_Languages");
 
         builder.HasKey(x => x.ID);
 

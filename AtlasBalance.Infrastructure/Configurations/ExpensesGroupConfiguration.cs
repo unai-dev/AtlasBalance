@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AtlasBalance.Infrastructure.Configurations;
 
-public class ExpensesGroupConfiguration: IEntityTypeConfiguration<ExpensesGroup>
+public class ExpensesGroupConfiguration : IEntityTypeConfiguration<ExpensesGroup>
 {
     public void Configure(EntityTypeBuilder<ExpensesGroup> builder)
     {
-        builder.ToTable("expenses_groups");
+        builder.ToTable("asp_ExpensesGroups");
 
         builder.HasKey(x => x.ID);
 
