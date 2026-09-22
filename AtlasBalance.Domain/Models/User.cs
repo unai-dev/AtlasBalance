@@ -2,13 +2,14 @@
 
 namespace AtlasBalance.Domain.Models;
 
-public class User: IdentityUser<int>
+public class User : IdentityUser<int>
 {
-    //properties
+    #region Properties
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
+    #endregion
 
-    //related properties
+    #region Related Properties
     public int LanguageID { get; set; } = 1;
     public Language? Language { get; set; }
 
@@ -17,4 +18,5 @@ public class User: IdentityUser<int>
     public List<ExpensesGroup> OwnedGroups { get; set; } = new List<ExpensesGroup>();
     public List<ExpensesGroup> GuestGroups { get; set; } = new List<ExpensesGroup>();
     public List<Transfer> Transfers { get; set; } = new List<Transfer>();
+    #endregion
 }

@@ -2,13 +2,15 @@
 
 namespace AtlasBalance.Domain.Models;
 
-public class Language: BaseModel
+public class Language : BaseModel
 {
+    #region Properties
     public string Code { get; set; } = null!;
     public string Name { get; set; } = null!;
+    #endregion
 
-    //related properties
+    #region Related Properties
     public List<User> Users { get; set; } = new List<User>();
     public List<LanguageResource> LanguageResources = new List<LanguageResource>();
-
+    #endregion
 }

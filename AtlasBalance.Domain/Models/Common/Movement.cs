@@ -1,13 +1,14 @@
 ﻿namespace AtlasBalance.Domain.Models.Common;
 
-public abstract class Movement: BaseModel
+public abstract class Movement : BaseModel
 {
-    //properties
+    #region Properties
     public double Amount { get; set; }
     public string Description { get; set; } = null!;
-    public DateTime MovementDate {  get; set; }
+    public DateTime MovementDate { get; set; }
+    #endregion
 
-    //related properties
+    #region Related Properties
     public int UserID { get; set; }
     public User? User { get; set; }
 
@@ -22,4 +23,5 @@ public abstract class Movement: BaseModel
 
     public int AccountID { get; set; }
     public Account? Account { get; set; }
+    #endregion
 }

@@ -8,10 +8,12 @@ namespace AtlasBalance.Domain.Models;
 
 public class ExpensesGroup : BaseModel
 {
+    #region Properties
     public string Name { get; set; } = null!;
     public string? Description { get; set; }
+    #endregion
 
-    //related properties
+    #region Related Properties
     public int OwnerID { get; set; }
     public User? Owner { get; set; }
 
@@ -23,4 +25,5 @@ public class ExpensesGroup : BaseModel
 
     public List<Expense> Expenses { get; set; } = new List<Expense>();
     public List<Transfer> Transfers { get; set; } = new List<Transfer>();
+    #endregion
 }

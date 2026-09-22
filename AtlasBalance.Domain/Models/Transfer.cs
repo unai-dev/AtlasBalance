@@ -2,8 +2,10 @@
 
 namespace AtlasBalance.Domain.Models;
 
-public class Transfer: Movement
+public class Transfer : Movement
 {
+    #region Properties
     public string Addressee { get; set; } = null!;
     public string Sender { get; set; } = null!;
+    #endregion
 }

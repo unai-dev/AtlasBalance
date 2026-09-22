@@ -2,9 +2,10 @@
 
 namespace AtlasBalance.Domain.Models;
 
-public class Expense: Movement
+public class Expense : Movement
 {
-    //related properties
+    #region Related Properties
     public ExpensesGroup? ExpensesGroup { get; set; }
     public int ExpensesGroupID { get; set; }
+    #endregion
 }

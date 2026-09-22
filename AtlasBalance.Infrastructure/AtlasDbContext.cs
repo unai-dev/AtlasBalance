@@ -13,13 +13,11 @@ namespace AtlasBalance.Infrastructure;
 
 public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
+    #region Constructors
     public AtlasDbContext(DbContextOptions<AtlasDbContext> options) : base(options) { }
+    #endregion
 
-    /**
-     | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-     |                                          DB SETS
-     | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-     */
+    #region Properties
     public DbSet<Expense> Expenses => Set<Expense>();
     public DbSet<Transfer> Transfers => Set<Transfer>();
     public DbSet<Currency> Currencies => Set<Currency>();
@@ -29,7 +27,9 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<ExpensesGroup> ExpensesGroups => Set<ExpensesGroup>();
     public DbSet<Language> Languages => Set<Language>();
     public DbSet<LanguageResource> LanguageResources => Set<LanguageResource>();
+    #endregion
 
+    #region Private Methods & Helpers
     /// <summary>
     /// Override the OnModelCreating method to apply entity configurations for the database context.
     /// </summary>
@@ -48,4 +48,5 @@ public class AtlasDbContext : IdentityDbContext<User, IdentityRole<int>, int>
         builder.ApplyConfiguration(new LanguageResourceConfiguration());
         builder.ApplyConfiguration(new TransferConfiguration());
     }
+    #endregion
 }

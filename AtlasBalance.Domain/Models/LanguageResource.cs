@@ -2,12 +2,15 @@
 
 namespace AtlasBalance.Domain.Models;
 
-public class LanguageResource: BaseModel
+public class LanguageResource : BaseModel
 {
+    #region Properties
     public string Text = null!;
     public string Description = null!;
+    #endregion
 
-    //related properties
+    #region Related Properties
     public int LanguageID { get; set; }
     public Language? Language { get; set; }
+    #endregion
 }
