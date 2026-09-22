@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using AtlasBalance.Domain.Models;
+﻿using AtlasBalance.Domain.Models;
 using AtlasBalance.Infrastructure.Configurations;
 
 using Microsoft.AspNetCore.Identity;

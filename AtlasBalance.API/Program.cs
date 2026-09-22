@@ -36,11 +36,16 @@ builder.Services.AddControllers();
  |                                          DB
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  */
-string cn = builder.Configuration.GetConnectionString("MariaDB")!;
-builder.Services.AddDbContext<AtlasDbContext>(options =>
+var cn = builder.Configuration.GetConnectionString("SQL_SERVER_DB");
+//si la cadena de conexión no es nula o vacía, se agrega el contexto de la base de datos al contenedor de servicios
+if (!string.IsNullOrEmpty(cn) || cn is not null)
 {
-    options.UseMySql(cn, ServerVersion.AutoDetect(cn));
-});
+    builder.Services.AddDbContext<AtlasDbContext>(options =>
+    {
+        options.UseSqlServer(cn);
+    });
+}
+
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
