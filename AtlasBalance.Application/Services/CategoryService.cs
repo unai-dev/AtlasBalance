@@ -17,17 +17,22 @@ namespace AtlasBalance.Application.Services;
 
 public class CategoryService : ICategoryService
 {
+    #region Fields & Dependencies
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<CategoryService> _logger;
+    #endregion
 
+    #region Constructors
     public CategoryService(AtlasDbContext context, IMapper mapper, ILogger<CategoryService> logger)
     {
         _context = context;
         _mapper = mapper;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     public async Task<IEnumerable<CategoryReadDto>> GetAll()
         => _mapper.Map<IEnumerable<CategoryReadDto>>(
             await _context.Categories
@@ -83,5 +88,9 @@ public class CategoryService : ICategoryService
 
         _logger.LogInformation("Deleted Category with ID {Id}", ID);
     }
+    #endregion
 
+    #region Private Methods & Helpers
+
+    #endregion
 }

@@ -12,17 +12,22 @@ namespace AtlasBalance.Application.Services;
 
 public class CurrencyService : ICurrencyService
 {
+    #region Fields & Dependencies
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<CurrencyService> _logger;
+    #endregion
 
+    #region Constructors
     public CurrencyService(AtlasDbContext context, IMapper mapper, ILogger<CurrencyService> logger)
     {
         _context = context;
         _mapper = mapper;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     public async Task<IEnumerable<CurrencyReadDto>> GetAll()
         => _mapper.Map<IEnumerable<CurrencyReadDto>>(await _context.Currencies.AsNoTracking().ToListAsync());
 
@@ -74,4 +79,9 @@ public class CurrencyService : ICurrencyService
 
         _logger.LogInformation("Deleted Currency with ID {Id}", ID);
     }
+    #endregion
+
+    #region Private Methods & Helpers
+
+    #endregion
 }

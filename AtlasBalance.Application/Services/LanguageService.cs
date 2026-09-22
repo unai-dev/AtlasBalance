@@ -12,17 +12,22 @@ namespace AtlasBalance.Application.Services;
 
 public class LanguageService : ILanguageService
 {
+    #region Fields & Dependencies
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<LanguageService> _logger;
+    #endregion
 
+    #region Constructors
     public LanguageService(AtlasDbContext context, IMapper mapper, ILogger<LanguageService> logger)
     {
         _context = context;
         _mapper = mapper;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     public async Task<IEnumerable<LanguageReadDto>> GetAll()
         => _mapper.Map<IEnumerable<LanguageReadDto>>(await _context.Languages.AsNoTracking().ToListAsync());
 
@@ -74,4 +79,9 @@ public class LanguageService : ILanguageService
 
         _logger.LogInformation("Deleted Language with ID {Id}", ID);
     }
+    #endregion
+
+    #region Private Methods & Helpers
+
+    #endregion
 }

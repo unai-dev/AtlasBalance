@@ -12,17 +12,22 @@ namespace AtlasBalance.Application.Services;
 
 public class PaymentMethodService : IPaymentMethodService
 {
+    #region Fields & Dependencies
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<PaymentMethodService> _logger;
+    #endregion
 
+    #region Constructors
     public PaymentMethodService(AtlasDbContext context, IMapper mapper, ILogger<PaymentMethodService> logger)
     {
         _context = context;
         _mapper = mapper;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     public async Task<IEnumerable<PaymentMethodReadDto>> GetAll()
         => _mapper.Map<IEnumerable<PaymentMethodReadDto>>(await _context.PaymentMethods.AsNoTracking().ToListAsync());
 
@@ -74,4 +79,9 @@ public class PaymentMethodService : IPaymentMethodService
 
         _logger.LogInformation("Deleted PaymentMethod with ID {Id}", ID);
     }
+    #endregion
+
+    #region Private Methods & Helpers
+
+    #endregion
 }

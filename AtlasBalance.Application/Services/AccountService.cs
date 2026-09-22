@@ -12,17 +12,22 @@ namespace AtlasBalance.Application.Services;
 
 public class AccountService : IAccountService
 {
+    #region Fields & Dependencies
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<AccountService> _logger;
+    #endregion
 
+    #region Constructors
     public AccountService(AtlasDbContext context, IMapper mapper, ILogger<AccountService> logger)
     {
         _context = context;
         _mapper = mapper;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     public async Task<IEnumerable<AccountReadDto>> GetAll()
         => _mapper.Map<IEnumerable<AccountReadDto>>(await _context.Accounts.AsNoTracking().ToListAsync());
 
@@ -82,4 +87,9 @@ public class AccountService : IAccountService
 
         _logger.LogInformation("Deleted Account with ID {Id}", ID);
     }
+    #endregion
+
+    #region Private Methods & Helpers
+
+    #endregion
 }

@@ -27,12 +27,15 @@ namespace AtlasBalance.Application.Services;
 /// </summary>
 public class AuthService: IAuthService
 {
+    #region Fields & Dependencies
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
     private readonly IConfiguration _configuration;
     private readonly IMapper _mapper;
     private readonly ILogger<AuthService> _logger;
+    #endregion
 
+    #region Constructors
     /// <summary>
     /// Constructor.
     /// </summary>
@@ -46,7 +49,9 @@ public class AuthService: IAuthService
         _mapper = mapper;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     /// <summary>
     /// Registra un nuevo usuario en Identity usando UserManager.
     /// - El DTO debe contener Email y Password.
@@ -94,7 +99,9 @@ public class AuthService: IAuthService
 
         return await GenerateJWTBearer(dto.Email);
     }
+    #endregion
 
+    #region Private Methods & Helpers
     /// <summary>
     /// Genera un JWT con los claims del usuario y la configuración de la aplicación.
     /// - Incluye el claim de email y cualquier claim adicional asociado al usuario en Identity.
@@ -126,6 +133,6 @@ public class AuthService: IAuthService
 
         return new JWTBearerResponse(token, expirationTime);
     }
-
+    #endregion
 
 }

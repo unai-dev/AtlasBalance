@@ -14,12 +14,15 @@ namespace AtlasBalance.Application.Services;
 
 public class ExpensesGroupService : IExpensesGroupService
 {
+    #region Fields & Dependencies
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
     private readonly IUserService _userService;
     private readonly ILogger<ExpensesGroupService> _logger;
+    #endregion
 
+    #region Constructors
     public ExpensesGroupService(AtlasDbContext context, IMapper mapper, UserManager<User> userManager, IUserService userService, ILogger<ExpensesGroupService> logger)
     {
         _context = context;
@@ -28,8 +31,9 @@ public class ExpensesGroupService : IExpensesGroupService
         _userService = userService;
         _logger = logger;
     }
+    #endregion
 
-
+    #region Public Methods
     public async Task<IEnumerable<ExpensesGroupReadDto>> GetAll(int userID)
         => _mapper.Map<IEnumerable<ExpensesGroupReadDto>>(await _context.ExpensesGroups.Where(x => x.OwnerID == userID || x.GuestID == userID).AsNoTracking().ToListAsync());
 
@@ -89,4 +93,9 @@ public class ExpensesGroupService : IExpensesGroupService
 
         _logger.LogInformation("Deleted ExpensesGroup with ID {Id}", ID);
     }
+    #endregion
+
+    #region Private Methods & Helpers
+
+    #endregion
 }

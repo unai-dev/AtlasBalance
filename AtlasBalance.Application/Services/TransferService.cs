@@ -18,17 +18,22 @@ namespace AtlasBalance.Application.Services;
 /// </summary>
 public class TransferService : ITransferService
 {
+    #region Fields & Dependencies
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<TransferService> _logger;
+    #endregion
 
+    #region Constructors
     public TransferService(AtlasDbContext context, IMapper mapper, ILogger<TransferService> logger)
     {
         _context = context;
         _mapper = mapper;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     public async Task<IEnumerable<TransferReadDto>> GetAll()
     {
         var transfers = await _context.Transfers
@@ -101,4 +106,9 @@ public class TransferService : ITransferService
 
         _logger.LogInformation("Deleted Transfer with ID {Id}", ID);
     }
+    #endregion
+
+    #region Private Methods & Helpers
+
+    #endregion
 }

@@ -12,17 +12,22 @@ namespace AtlasBalance.Application.Services;
 
 public class ExpenseService : IExpenseService
 {
+    #region Fields & Dependencies
     private readonly AtlasDbContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<ExpenseService> _logger;
+    #endregion
 
+    #region Constructors
     public ExpenseService(AtlasDbContext context, IMapper mapper, ILogger<ExpenseService> logger)
     {
         _context = context;
         _mapper = mapper;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     public async Task<IEnumerable<ExpenseReadDto>> GetAll()
         => _mapper.Map<IEnumerable<ExpenseReadDto>>(await _context.Expenses.AsNoTracking().ToListAsync());
 
@@ -96,4 +101,9 @@ public class ExpenseService : IExpenseService
 
         _logger.LogInformation("Deleted Expense with ID {Id}", ID);
     }
+    #endregion
+
+    #region Private Methods & Helpers
+
+    #endregion
 }

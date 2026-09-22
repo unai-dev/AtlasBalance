@@ -15,12 +15,15 @@ namespace AtlasBalance.Application.Services;
 
 public class UserService : IUserService
 {
+    #region Fields & Dependencies
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
     private readonly IHttpContextAccessor _http;
     private readonly AtlasDbContext _context;
     private readonly ILogger<UserService> _logger;
+    #endregion
 
+    #region Constructors
     public UserService(IMapper mapper, UserManager<User> userManager, IHttpContextAccessor http, AtlasDbContext context, ILogger<UserService> logger)
     {
         _mapper = mapper;
@@ -29,7 +32,9 @@ public class UserService : IUserService
         _context = context;
         _logger = logger;
     }
+    #endregion
 
+    #region Public Methods
     public async Task<IEnumerable<UserReadDto>> GetAll()
         => _mapper.Map<IEnumerable<UserReadDto>>(await _userManager.Users.AsNoTracking().ToListAsync());
 
@@ -130,4 +135,9 @@ public class UserService : IUserService
 
         _logger.LogInformation("Updated language for user {Id} to {LanguageId}", ID, languageID);
     }
+    #endregion
+
+    #region Private Methods & Helpers
+
+    #endregion
 }
