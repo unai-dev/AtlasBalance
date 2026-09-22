@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBalance.Infrastructure.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    [Migration("20260922165012_InitialCreateDB")]
+    [Migration("20260922172242_InitialCreateDB")]
     partial class InitialCreateDB
     {
         /// <inheritdoc />
@@ -747,7 +747,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.HasOne("AtlasBalance.Domain.Models.Account", "Account")
                         .WithMany("Expenses")
                         .HasForeignKey("AccountID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("AtlasBalance.Domain.Models.Category", "Category")
@@ -765,7 +765,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.HasOne("AtlasBalance.Domain.Models.ExpensesGroup", "ExpensesGroup")
                         .WithMany("Expenses")
                         .HasForeignKey("ExpensesGroupID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("AtlasBalance.Domain.Models.PaymentMethod", "PaymentMethod")
@@ -798,7 +798,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.HasOne("AtlasBalance.Domain.Models.Category", "Category")
                         .WithMany("ExpensesGroups")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("AtlasBalance.Domain.Models.User", "Guest")
@@ -836,7 +836,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                     b.HasOne("AtlasBalance.Domain.Models.Account", "Account")
                         .WithMany("Transfers")
                         .HasForeignKey("AccountID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("AtlasBalance.Domain.Models.Category", "Category")

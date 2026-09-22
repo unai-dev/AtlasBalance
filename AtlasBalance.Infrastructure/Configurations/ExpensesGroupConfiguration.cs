@@ -30,5 +30,10 @@ public class ExpensesGroupConfiguration : IEntityTypeConfiguration<ExpensesGroup
             .WithMany(u => u.GuestGroups)
             .HasForeignKey(x => x.GuestID)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.Category)
+            .WithMany(c => c.ExpensesGroups)
+            .HasForeignKey(x => x.CategoryID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

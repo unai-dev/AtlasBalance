@@ -27,5 +27,11 @@ public class TransferConfiguration : IEntityTypeConfiguration<Transfer>
         builder.Property(x => x.Sender)
             .HasMaxLength(55)
             .IsRequired();
+
+
+        builder.HasOne(x => x.Account)
+            .WithMany(x => x.Transfers)
+            .HasForeignKey(x => x.AccountID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

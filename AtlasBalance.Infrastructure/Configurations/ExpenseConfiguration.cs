@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AtlasBalance.Infrastructure.Configurations;
 
-public class ExpenseConfiguration: IEntityTypeConfiguration<Expense>
+public class ExpenseConfiguration : IEntityTypeConfiguration<Expense>
 {
     public void Configure(EntityTypeBuilder<Expense> builder)
     {
@@ -19,5 +19,15 @@ public class ExpenseConfiguration: IEntityTypeConfiguration<Expense>
         builder.Property(x => x.Description)
             .HasMaxLength(2000)
             .IsRequired();
+
+        builder.HasOne(x => x.ExpensesGroup)
+            .WithMany(x => x.Expenses)
+            .HasForeignKey(x => x.ExpensesGroupID)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.Account)
+            .WithMany(x => x.Expenses)
+            .HasForeignKey(x => x.AccountID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

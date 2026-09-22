@@ -230,7 +230,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                         column: x => x.CategoryID,
                         principalTable: "asp_Categories",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -362,7 +362,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                         column: x => x.ExpensesGroupID,
                         principalTable: "asp_ExpensesGroups",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_asp_Expenses_asp_PaymentMethods_PaymentMethodID",
                         column: x => x.PaymentMethodID,
@@ -374,7 +374,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                         column: x => x.AccountID,
                         principalTable: "asp_accounts",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -434,7 +434,7 @@ namespace AtlasBalance.Infrastructure.Migrations
                         column: x => x.AccountID,
                         principalTable: "asp_accounts",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
