@@ -18,5 +18,10 @@ public class LanguageResourceConfiguration : IEntityTypeConfiguration<LanguageRe
 
         builder.Property(x => x.Description)
             .IsRequired();
+
+        builder.HasOne(x => x.Language)
+            .WithMany(x => x.LanguageResources)
+            .HasForeignKey(x => x.LanguageID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

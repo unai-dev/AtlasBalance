@@ -33,5 +33,20 @@ public class TransferConfiguration : IEntityTypeConfiguration<Transfer>
             .WithMany(x => x.Transfers)
             .HasForeignKey(x => x.AccountID)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.Category)
+            .WithMany(x => x.Transfers)
+            .HasForeignKey(x => x.CategoryID)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.User)
+            .WithMany(x => x.Transfers)
+            .HasForeignKey(x => x.UserID)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.PaymentMethod)
+            .WithMany(x => x.Transfers)
+            .HasForeignKey(x => x.PaymentMethodID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

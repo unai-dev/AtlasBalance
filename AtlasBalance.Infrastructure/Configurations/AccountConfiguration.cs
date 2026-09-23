@@ -28,5 +28,10 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         builder.Property(x => x.Provider)
             .HasMaxLength(255)
             .IsRequired();
+
+        builder.HasOne(x => x.User)
+            .WithMany(x => x.Accounts)
+            .HasForeignKey(x => x.UserID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
