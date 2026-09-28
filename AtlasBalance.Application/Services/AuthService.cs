@@ -12,6 +12,7 @@ using AtlasBalance.Domain.Models;
 using AutoMapper;
 
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -25,7 +26,7 @@ namespace AtlasBalance.Application.Services;
 /// - Lanza excepciones tipadas (BadRequestException, NotFoundException) para que el middleware global las transforme
 ///   en respuestas HTTP apropiadas.
 /// </summary>
-public class AuthService: IAuthService
+public class AuthService : IAuthService
 {
     #region Fields & Dependencies
     private readonly UserManager<User> _userManager;
@@ -39,7 +40,7 @@ public class AuthService: IAuthService
     /// <summary>
     /// Constructor.
     /// </summary>
-    public AuthService(UserManager<User> userManager, 
+    public AuthService(UserManager<User> userManager,
         SignInManager<User> signInManager, IConfiguration configuration,
         IMapper mapper, ILogger<AuthService> logger)
     {
@@ -62,6 +63,10 @@ public class AuthService: IAuthService
     /// <exception cref="BadRequestException">Si la creación falla (errores de Identity).</exception>
     public async Task<UserReadDto> Register(UserCreateDto dto)
     {
+        var exists = await _userManager.Users.AnyAsync(x => x.Email == dto.Email);
+        if (exists)
+            throw new BadRequestException($"Duplicate email in the system");
+
         // Crear la entidad de usuario y delegar en UserManager para hashing de contraseña y persistencia
         var newUser = new User
         {
@@ -73,8 +78,8 @@ public class AuthService: IAuthService
 
         if (!result.Succeeded)
         {
-             throw new BadRequestException($"Failed to create user");
-        } 
+            throw new BadRequestException($"Failed to create user");
+        }
 
         return _mapper.Map<UserReadDto>(newUser);
     }
