@@ -29,7 +29,12 @@ public class LanguageService : ILanguageService
 
     #region Public Methods
     public async Task<IEnumerable<LanguageReadDto>> GetAll()
-        => _mapper.Map<IEnumerable<LanguageReadDto>>(await _context.Languages.AsNoTracking().ToListAsync());
+    {
+        var languages = await _context.Languages
+            .AsNoTracking()
+            .ToListAsync();
+        return _mapper.Map<IEnumerable<LanguageReadDto>>(languages);
+    }
 
     public async Task<LanguageReadDto> GetOne(int ID)
     {

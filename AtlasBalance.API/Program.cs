@@ -62,6 +62,8 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<TransferProfile>();
     cfg.AddProfile<ExpensesGroupProfile>();
     cfg.AddProfile<UserProfile>();
+    cfg.AddProfile<LanguageProfile>();
+    cfg.AddProfile<LanguageResourceProfile>();
 });
 
 /**
@@ -75,14 +77,16 @@ builder.Services.AddScoped<SignInManager<User>>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 //app services
-builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
-builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IExpensesGroupService, ExpensesGroupService>();
+builder.Services.AddScoped<ILanguageService, LanguageService>();
+builder.Services.AddScoped<ILanguageResourceService, LanguageResourceService>();
+builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 builder.Services.AddScoped<ITransferService, TransferService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 /**
  | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
